@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+  Esta página se muestra cuando el usuario hace clic en el ícono de la extensión.
+  Esto se debe a que el campo "action" en el manifest.json contiene la clave
+  "default_popup" con el valor "popup.html".
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web2Data - Popup</title>
+    <style type="text/css">
+        body {
+          margin: 10px;
+          white-space: nowrap;
+          font-family: Arial, sans-serif;
+        }
+
+        #container {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .start {
+            border: 1px solid #000;
+            border-radius: 15px;
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #0078d7;
+            color: white;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+          }
+
+          
+        .start:hover {
+            background-color: #005bb5;
+        }
+    </style>
+  </head>
+
+
+  <body>
+    <div id="container">
+      <!--
+        Cuando el botón "Render App" es clickeado, se envía un mensaje
+        "startApp" a la aplicación de React para que se renderice en la página
+        web actual.
+      -->
+      <button class="start" id="renderButton">
+        Render App
+      </button>
+    </div>
+    <!-- Script para manejar la lógica del popup -->
+    <script src="js/popup.js"></script>
+  </body>
+</html>
