@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Web2Data",
+  "description": "Web2Data es una potente extensión de Chrome que te permite convertir cualquier sitio web en varios formatos como JSON, XML, CSV y más. Simplemente selecciona los campos que te interesan en la página web y Web2Data se encargará del resto. Ideal para desarrolladores, analistas de datos y cualquier persona que necesite extraer y estructurar datos de la web de manera rápida y eficiente.",
+  "version": "1.0",
+
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "src/popup.html"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/build/main.js"]
+    }
+  ]
+}
