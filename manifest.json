@@ -6,12 +6,11 @@
 
   "action": {
     "default_icon": "icon.png",
-    "default_popup": "src/popup/popup.html"
+    "default_popup": "src/popup.html"
   },
 
   "permissions": [
-    "activeTab",
-    "scripting"
+    "activeTab"
   ],
 
   "host_permissions": [
@@ -25,5 +24,4 @@
       "js": ["src/build/main.js"]
     }
   ]
-
 }

@@ -1,58 +1,64 @@
 <!doctype html>
 <!--
-  Esta página se muestra cuando el usuario hace clic en el ícono de la extensión.
-  Esto se debe a que el campo "action" en el manifest.json contiene la clave
-  "default_popup" con el valor "popup.html".
+  Este archivo define la estructura HTML de la ventana emergente (popup) de la extensión.
+  Se muestra cuando el usuario hace clic en el ícono de la extensión en la barra de herramientas de Chrome.
+  La ruta de este archivo está especificada en el campo "default_popup" del manifest.json.
 -->
-<html lang="es">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la ventana emergente -->
     <title>Web2Data - Popup</title>
+
+    <!-- Estilos CSS para la ventana emergente -->
     <style type="text/css">
-        body {
-          margin: 10px;
-          white-space: nowrap;
-          font-family: Arial, sans-serif;
-        }
+      /* Estilos generales del cuerpo de la ventana emergente */
+      body {
+        margin: 10px; /* Margen exterior para evitar que el contenido toque los bordes */
+        white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+        font-family: Arial, sans-serif; /* Fuente predeterminada */
+      }
 
-        #container {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-        }
+      /* Contenedor principal para organizar los elementos */
+      #container {
+        display: flex;
+        align-items: center; /* Centra verticalmente los elementos */
+        justify-content: space-between; /* Distribuye el espacio entre los elementos */
+      }
 
-        .start {
-            border: 1px solid #000;
-            border-radius: 15px;
-            padding: 5px 15px;
-            cursor: pointer;
-            background-color: #0078d7;
-            color: white;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-          }
+      /* Estilos para el botón "Render App" */
+      .start {
+        border: 1px solid #000; /* Borde sólido negro */
+        border-radius: 15px; /* Bordes redondeados */
+        padding: 5px 15px; /* Espaciado interno */
+        cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+        background-color: #007bff; /* Color de fondo azul */
+        color: white; /* Texto blanco */
+        font-size: 14px; /* Tamaño de la fuente */
+        transition: background-color 0.3s ease; /* Transición suave al cambiar el color de fondo */
+      }
 
-          
-        .start:hover {
-            background-color: #005bb5;
-        }
+      /* Efecto al pasar el cursor sobre el botón */
+      .start:hover {
+        background-color: #0056b3; /* Color de fondo más oscuro al hacer hover */
+      }
     </style>
+
+    <!-- Incluye el archivo JavaScript para manejar la lógica de la ventana emergente -->
+    <script src="js/popup.js"></script>
   </head>
 
-
   <body>
+    <!-- Contenedor principal para organizar los elementos -->
     <div id="container">
       <!--
-        Cuando el botón "Render App" es clickeado, se envía un mensaje
-        "startApp" a la aplicación de React para que se renderice en la página
-        web actual.
+        Botón "Render App":
+        - Cuando se hace clic en este botón, se envía un mensaje a la aplicación de React
+          para que se renderice en la página web actual.
+        - La lógica de este botón está definida en el archivo popup.js.
       -->
-      <button class="start" id="renderButton">
+      <button class="start">
         Render App
       </button>
     </div>
-    <!-- Script para manejar la lógica del popup -->
-    <script src="js/popup.js"></script>
   </body>
 </html>

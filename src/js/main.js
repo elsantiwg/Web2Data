@@ -1,51 +1,50 @@
+// Importa React y ReactDOM para construir y renderizar la aplicación.
 import React from 'react';
 import ReactDOM from 'react-dom';
-// Componente principal de la aplicación
+
+// Importa el componente Button desde la carpeta de componentes.
+import Button from './components/Button';
+
+// Define el componente principal de la aplicación.
 class App extends React.Component {
-    render() {
-      return (
-        <div style={styles.appContainer}>
-          <h1>¡Tu aplicación se ha inyectado correctamente!</h1>
-          <p>Web2Data está funcionando como debería.</p>
-        </div>
-      );
-    }
+  render() {
+    return (
+      <div>
+        {/* Mensaje que confirma que la aplicación se inyectó correctamente. */}
+        Your App injected to DOM correctly!
+        {/* Renderiza el componente Button. */}
+        <Button />
+      </div>
+    );
   }
-  
-// Estilos para el componente
-const styles = {
-    appContainer: {
-      position: 'fixed',
-      top: '20px',
-      right: '20px',
-      backgroundColor: '#ffffff',
-      border: '1px solid #ccc',
-      borderRadius: '8px',
-      padding: '20px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      zIndex: 10000,
-    },
-  };
+}
 
-
-// Escucha los mensajes enviados desde el popup o el background script
+// Escucha los mensajes enviados desde el popup o el background script.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  // Si el mensaje es "injectApp"
+  // Verifica si el mensaje recibido es para inyectar la aplicación.
   if (request.injectApp) {
-    // Inyecta la aplicación en el DOM y envía una respuesta
+    // Inyecta la aplicación en el DOM.
     injectApp();
-    sendResponse({ startedExtension: true });
+
+    // Envía una respuesta al popup confirmando que la extensión se inició.
+    sendResponse({
+      startedExtension: true,
+    });
   }
+
+  // Devuelve true para indicar que se espera una respuesta asíncrona.
+  return true;
 });
 
-// Función para inyectar la aplicación en el DOM
+// Función para inyectar la aplicación React en el DOM.
 function injectApp() {
-  // Crea un nuevo div para la aplicación
+  // Crea un nuevo contenedor div para la aplicación.
   const appContainer = document.createElement('div');
   appContainer.setAttribute('id', 'chromeExtensionReactApp');
-  // Agrega el div al cuerpo del documento
+
+  // Agrega el contenedor al final del body de la página.
   document.body.appendChild(appContainer);
-  // Renderiza la aplicación de React en el nuevo div
+
+  // Renderiza la aplicación React dentro del contenedor.
   ReactDOM.render(<App />, appContainer);
-  console.log('La aplicación se ha inyectado correctamente.');
 }
